@@ -4,7 +4,7 @@ export default class Work extends React.Component{
   render(){
     return(
       <div>
-        work
+        我是work页面
       </div>
     )
   }
