@@ -2,30 +2,41 @@ import React from 'react';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import NavBar from './components/NavBar';
 
 class App extends React.Component {
   constructor(){
     super();
     this.state={
-      pathname: ''
+      pathname: '',
+      mobile: true
     }
   }
   componentWillReceiveProps(){
-    this.setState({pathname: this.props.location.pathname})
+    this.setState({pathname: this.props.location.pathname});
   }
   componentWillMount(){
-    this.setState({pathname: this.props.location.pathname})
+    this.setState({pathname: this.props.location.pathname});
+    this.checkMobile()
+  }
+  checkMobile(){
+    this.setState({
+      mobile: document.body.clientWidth<700 ? true : false
+    })
+  }
+  componentDidMount(){
+    window.onresize = this.checkMobile.bind(this)
   }
   render () {
     return(
       <div className='wrap'>
-        <Header title={this.state.pathname}/>
+        {this.state.mobile ? <Header title={this.state.pathname}/>: <NavBar title={this.state.pathname}/>}
 
         <div className='main'>
           {this.props.children}
         </div>
 
-        <Footer />
+        {this.state.mobile ? <Footer /> : null}
       </div>
     )
   }

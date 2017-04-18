@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Blog from './components/Blog';
 import Work from './components/Work';
 import About from './components/About';
+import Post from './components/Post';
 
 function Routers() {
   return(
@@ -13,6 +14,7 @@ function Routers() {
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='/blog' component={Blog} />
+        <Route path='/post/:title' component={Post} />
         <Route path='/work' component={Work} />
         <Route path='/about' component={About} />
       </Route>
